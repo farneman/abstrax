@@ -1,0 +1,24 @@
+{
+  "name": "abstrax",
+  "version": "0.0.0",
+  "description": "Simple wrapper on top of jQuery.ajax to reduce redundancy",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start --single-run",
+    "watch": "karma start"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2"
+  },
+  "dependencies": {
+    "lodash": "^4.11.2"
+  },
+  "peerDependencies": {
+    "jquery": "*"
+  }
+}
