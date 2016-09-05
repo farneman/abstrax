@@ -2,21 +2,44 @@
   "name": "abstrax",
   "version": "0.0.0",
   "description": "Simple wrapper on top of jQuery.ajax to reduce redundancy",
-  "main": "index.js",
+  "main": "lib/abstrax.js",
+  "files": [
+    "lib",
+    "dist"
+  ],
   "scripts": {
-    "test": "karma start --single-run",
-    "watch": "karma start"
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min",
+    "build:commonjs": "webpack --config webpack.config.js",
+    "build:umd": "webpack --config webpack.config.umd.babel.js",
+    "build:umd:min": "NODE_ENV=production webpack --config webpack.config.umd.babel.js",
+    "clean": "rimraf lib dist",
+    "lint": "eslint --fix src spec karma.conf.js webpack.config.js webpack.config.umd.babel.js",
+    "prepublish": "npm run clean && npm run test && npm run build",
+    "start": "karma start",
+    "test": "karma start --single-run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.4.0",
+    "eslint-loader": "^1.5.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
-    "karma-jasmine": "^1.0.2"
+    "karma-jasmine": "^1.0.2",
+    "karma-webpack": "^1.8.0",
+    "rimraf": "^2.5.4",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
-    "lodash": "^4.11.2"
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.template": "^4.4.0"
   },
   "peerDependencies": {
     "jquery": "*"

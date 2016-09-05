@@ -1,12 +1,19 @@
-module.exports = function(config) {
-    config.set({
-        browsers: ['Chrome'],
-        frameworks: ['jasmine'],
-        files: [
-            'node_modules/jquery/dist/jquery.js',
-            'node_modules/lodash/lodash.js',
-            'index.js',
-            'spec/*_spec.js'
-        ]
-    })
-}
+var webpackConfig = require('./webpack.config.js');
+webpackConfig.entry = {};
+
+module.exports = function (config) {
+  config.set({
+    browsers: ['Chrome'],
+    frameworks: ['jasmine'],
+    files: [
+            {pattern: 'spec/*_spec.js', watched: false}
+    ],
+    preprocessors: {
+      'spec/*_spec.js': ['webpack']
+    },
+    webpack: webpackConfig,
+    webpackMiddleware: {
+      stats: 'errors-only'
+    }
+  });
+};

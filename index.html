@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Test page</title>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="dist/abstrax.js"></script>
+    <script>
+      var a = abstrax({requests: {get: {url: 'file://test.html'}}});
+      a.get.fulfill()
+        .then(function (d) {
+          console.log('win!', d);
+        }, function (e) {
+          console.log('err!', e);
+        });
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>
