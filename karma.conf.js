@@ -5,8 +5,8 @@ module.exports = function (config) {
   config.set({
     browsers: ['Chrome'],
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/',
+      type: 'html',
+      dir: 'coverage/',
       includeAllSources: true
     },
     frameworks: ['jasmine'],
@@ -14,7 +14,7 @@ module.exports = function (config) {
       {pattern: 'spec/*_spec.js', watched: false}
     ],
     preprocessors: {
-      'spec/*_spec.js': ['webpack']
+      'spec/*_spec.js': ['webpack', 'sourcemap']
     },
     reporters: ['progress', 'coverage'],
     webpack: webpackConfig,

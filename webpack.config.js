@@ -1,5 +1,3 @@
-'use strict';
-
 var FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
 
 var plugins = [
@@ -7,10 +5,11 @@ var plugins = [
     failOnError: true,
     quietSuccess: true
   })
-]
+];
 
 module.exports = {
   context: __dirname,
+  devTool: 'inline-source-map',
   entry: './src/index.js',
   output: {
     filename: 'abstrax.js',
@@ -28,10 +27,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015']
-        }
+        loader: 'babel'
       }
     ]
   },

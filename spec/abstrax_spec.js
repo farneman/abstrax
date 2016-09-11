@@ -82,19 +82,19 @@ describe('abstrax', () => {
     });
 
     it('uses the global default settings', () => {
-      myModel.getUsers.fulfill();
+      myModel.getUsers();
 
       expect(ajaxArgsFromCall().headers['Fake-Header']).toEqual('foo');
     });
 
     it('overrides the global settings with settings defined per request', () => {
-      myModel.getThings.fulfill();
+      myModel.getThings();
 
       expect(ajaxArgsFromCall().headers['Fake-Header']).toEqual('bar');
     });
 
     it('returns the ajax request object', (done) => {
-      const request = myModel.getUsers.fulfill(),
+      const request = myModel.getUsers(),
         mostRecentArgs = ajaxArgsFromCall();
 
       expect(mostRecentArgs.url).toEqual('/api/users');
@@ -112,7 +112,7 @@ describe('abstrax', () => {
           password: 'abcd1234'
         };
 
-        myModel.createUser.with(payload).fulfill();
+        myModel.createUser(payload);
 
         const mostRecentArgs = ajaxArgsFromCall();
 
@@ -124,11 +124,28 @@ describe('abstrax', () => {
 
     describe('with url keys', () => {
       it('calls jQuery.ajax with the correct data value', () => {
-        myModel.getUser.for({ userId: '123'}).fulfill();
+        myModel.getUser.for({ userId: '123'})();
 
         const mostRecentArgs = ajaxArgsFromCall();
 
         expect(mostRecentArgs.url).toEqual('/api/users/123');
+        expect(mostRecentArgs.method).toEqual('GET');
+      });
+    });
+
+    describe('without necessary url keys', () => {
+      it('throws an error', () => {
+        expect(myModel.getUser).toThrow(new Error('Must supply url keys before calling fulfill'));
+      });
+    });
+
+    describe('with unnecessary url keys', () => {
+      it('calls jQuery.ajax with the correct data value', () => {
+        myModel.getUsers.for({ userId: '123'})();
+
+        const mostRecentArgs = ajaxArgsFromCall();
+
+        expect(mostRecentArgs.url).toEqual('/api/users');
         expect(mostRecentArgs.method).toEqual('GET');
       });
     });
@@ -140,7 +157,7 @@ describe('abstrax', () => {
           password: 'abcd1234'
         };
 
-        myModel.updateUser.for({ userId: '123'}).with(payload).fulfill();
+        myModel.updateUser.for({ userId: '123'})(payload);
 
         const mostRecentArgs = ajaxArgsFromCall();
 

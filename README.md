@@ -6,15 +6,6 @@ A simple wrapper on top of jQuery.ajax to reduce redundancy
 ## Usage
 
 ```
-getSomething.fulfill(payload)
-getSomething.with(payload).fulfill()
-getSomething.for(specific).fulfill()
-getSomething.for(specific).fulfill(payload)
-getSomething.for(specific).with(payload).fulfill()
-  .then(doSomething);
-```
-
-```
 var myModel = abstrax({
     requests: {
         getThings: {
@@ -32,12 +23,10 @@ var myModel = abstrax({
         },
         getUser: {
             url: "/api/users/${userId}",
-            interpolate: true
         },
         updateUser: {
             url: "/api/users/${userId}",
             method: "patch",
-            interpolate: true
         }
     },
     defaults: {
@@ -47,26 +36,23 @@ var myModel = abstrax({
     }
 });
 
-myModel.getUsers.fulfill()
+myModel.getUsers()
     .then(success, failure);
 
-myModel.getUser.for(urlKeys).fulfill()
+myModel.getUser.for(urlKeys)()
     .then(success, failure);
 
-myModel.createUser.with(dataPayload).fulfill()
-    .then(success, failure);
-
-myModel.createUser.with(dataPayload).fulfill()
+myModel.createUser(dataPayload)
     .then(success, failure);
 
 var getCurrentUser = myModel.getUser.for(urlKeys);
-getCurrentUser.fulfill()
+getCurrentUser()
     .then(success, failure);
 
-myModel.updateUser.for(urlKeys).with(dataPayload).fulfill()
+myModel.updateUser.for(urlKeys)(dataPayload)
     .then(success, failure);
 
 var updateCurrentUser = myModel.updateUser.for(urlKeys);
-updateCurrentUser.with(dataPayload).fulfill()
+updateCurrentUser(dataPayload)
     .then(success, failure);
 ```

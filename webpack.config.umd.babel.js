@@ -49,7 +49,10 @@ export default {
         loader: 'babel',
         query: {
           presets: ['es2015'],
-          plugins: ['add-module-exports']
+          plugins: [
+            'transform-class-properties',
+            'add-module-exports'
+          ]
         }
       }
     ]
