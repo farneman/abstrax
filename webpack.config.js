@@ -1,3 +1,14 @@
+'use strict';
+
+var FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
+
+var plugins = [
+  new FlowStatusWebpackPlugin({
+    failOnError: true,
+    quietSuccess: true
+  })
+]
+
 module.exports = {
   context: __dirname,
   entry: './src/index.js',
@@ -23,5 +34,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: plugins
 };

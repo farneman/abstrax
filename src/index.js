@@ -1,3 +1,4 @@
+// @flow
 import template from 'lodash.template';
 import Request from './request';
 
@@ -11,7 +12,7 @@ const templateUrl = (url) => {
   return template(url);
 };
 
-export default function abstrax(config) {
+export default function abstrax(config: Object) {
   const defaultConfig = {
     method: 'GET',
     dataType: 'json',

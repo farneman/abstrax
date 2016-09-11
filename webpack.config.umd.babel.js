@@ -1,14 +1,13 @@
 /* eslint-disable no-process-env */
 import webpack from 'webpack';
-const { NODE_ENV } = process.env;
 
+const { NODE_ENV } = process.env;
 const plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
   })
 ];
-
 const filename = `abstrax${NODE_ENV === 'production' ? '.min' : ''}.js`;
 
 if (NODE_ENV === 'production') {

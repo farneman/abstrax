@@ -1,3 +1,4 @@
+// @flow
 import jQuery from 'jquery';
 
 const applyParamsToTemplate = (urlTemplate, params) => {
@@ -9,7 +10,7 @@ const applyParamsToTemplate = (urlTemplate, params) => {
 };
 
 class Request {
-  constructor(config) {
+  constructor(config: Object) {
     this._config = config;
   }
 
@@ -21,17 +22,17 @@ class Request {
     return this._config;
   }
 
-  concat(additionalConfig) {
+  concat(additionalConfig: Object) {
     return Request.of(Object.assign({}, this.empty(), additionalConfig));
   }
 
-  for(urlParams) {
+  for(urlParams: Object) {
     var appliedUrl = applyParamsToTemplate(this.empty().url, urlParams);
 
     return this.concat({url: appliedUrl});
   }
 
-  with(payload) {
+  with(payload: Object) {
     return this.concat({data: payload});
   }
 
