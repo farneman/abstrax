@@ -9,6 +9,17 @@ Climate](https://codeclimate.com/github/farneman/abstrax/badges/gpa.svg)](https:
 Coverage](https://codeclimate.com/github/farneman/abstrax/badges/coverage.svg)](https://codeclimate.com/github/farneman/abstrax/coverage)
 [![Issue
 Count](https://codeclimate.com/github/farneman/abstrax/badges/issue_count.svg)](https://codeclimate.com/github/farneman/abstrax)
+[![Build
+Status](https://travis-ci.org/farneman/abstrax.svg?branch=master)](https://travis-ci.org/farneman/abstrax)
+
+[![dependencies
+Status](https://david-dm.org/farneman/abstrax/status.svg)](https://david-dm.org/farneman/abstrax)
+[![devDependencies
+Status](https://david-dm.org/farneman/abstrax/dev-status.svg)](https://david-dm.org/farneman/abstrax?type=dev)
+[![peerDependencies
+Status](https://david-dm.org/farneman/abstrax/peer-status.svg)](https://david-dm.org/farneman/abstrax?type=peer)
+[![Known
+Vulnerabilities](https://snyk.io/test/npm/name/badge.svg)](https://snyk.io/test/npm/name)
 
 ## Installation
 

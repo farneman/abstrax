@@ -15,6 +15,9 @@ module.exports = {
     filename: 'abstrax.js',
     path: './lib'
   },
+  externals: {
+    jquery: 'jQuery'
+  },
   module: {
     preLoaders: [
       {
