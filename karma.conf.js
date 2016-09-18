@@ -5,9 +5,12 @@ module.exports = function (config) {
   config.set({
     browsers: ['Chrome'],
     coverageReporter: {
-      type: 'html',
       dir: 'coverage/',
-      includeAllSources: true
+      includeAllSources: true,
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' }
+      ],
     },
     frameworks: ['jasmine'],
     files: [

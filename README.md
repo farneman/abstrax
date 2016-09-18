@@ -3,6 +3,13 @@
 
 A simple wrapper on top of jQuery.ajax to reduce redundancy
 
+[![Code
+Climate](https://codeclimate.com/github/farneman/abstrax/badges/gpa.svg)](https://codeclimate.com/github/farneman/abstrax)
+[![Test
+Coverage](https://codeclimate.com/github/farneman/abstrax/badges/coverage.svg)](https://codeclimate.com/github/farneman/abstrax/coverage)
+[![Issue
+Count](https://codeclimate.com/github/farneman/abstrax/badges/issue_count.svg)](https://codeclimate.com/github/farneman/abstrax)
+
 ## Installation
 
 ```

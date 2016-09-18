@@ -2,8 +2,14 @@ import jQuery from 'jquery';
 import abstrax from '../src/index.js';
 
 describe('abstrax', () => {
-  const ajaxArgsFromCall = () => jQuery.ajax.calls.mostRecent().args[0];
   let myModel = null;
+
+  const ajaxArgsFromCall = () => jQuery.ajax.calls.mostRecent().args[0];
+  const expectFakeHeader = (request, value) => {
+    myModel[request]();
+
+    expect(ajaxArgsFromCall().headers['Fake-Header']).toEqual(value);
+  };
 
   beforeEach(() => {
     myModel = abstrax({
@@ -82,15 +88,11 @@ describe('abstrax', () => {
     });
 
     it('uses the global default settings', () => {
-      myModel.getUsers();
-
-      expect(ajaxArgsFromCall().headers['Fake-Header']).toEqual('foo');
+      expectFakeHeader('getUsers', 'foo');
     });
 
     it('overrides the global settings with settings defined per request', () => {
-      myModel.getThings();
-
-      expect(ajaxArgsFromCall().headers['Fake-Header']).toEqual('bar');
+      expectFakeHeader('getThings', 'bar');
     });
 
     it('returns the ajax request object', (done) => {
@@ -122,9 +124,15 @@ describe('abstrax', () => {
       });
     });
 
+    describe('without necessary url keys', () => {
+      it('throws an error', () => {
+        expect(myModel.getUser).toThrow(new Error('Must supply url keys before calling fulfill'));
+      });
+    });
+
     describe('with url keys', () => {
-      it('calls jQuery.ajax with the correct data value', () => {
-        myModel.getUser.for({ userId: '123'})();
+      it('calls jQuery.ajax with the correctly keyed url', () => {
+        myModel.getUser.for({userId: '123'})();
 
         const mostRecentArgs = ajaxArgsFromCall();
 
@@ -133,19 +141,16 @@ describe('abstrax', () => {
       });
     });
 
-    describe('without necessary url keys', () => {
-      it('throws an error', () => {
-        expect(myModel.getUser).toThrow(new Error('Must supply url keys before calling fulfill'));
-      });
-    });
-
     describe('with unnecessary url keys', () => {
-      it('calls jQuery.ajax with the correct data value', () => {
-        myModel.getUsers.for({ userId: '123'})();
+      it('calls jQuery.ajax with the correct url', () => {
+        myModel.getThings.for({
+          someKey: '1',
+          anotherKey: 'abc'
+        })();
 
         const mostRecentArgs = ajaxArgsFromCall();
 
-        expect(mostRecentArgs.url).toEqual('/api/users');
+        expect(mostRecentArgs.url).toEqual('/api/things');
         expect(mostRecentArgs.method).toEqual('GET');
       });
     });

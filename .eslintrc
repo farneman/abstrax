@@ -17,7 +17,7 @@
   "no-empty-character-class": 2, // http://eslint.org/docs/rules/no-empty-character-class
   "no-empty": 2, // http://eslint.org/docs/rules/no-empty
   "no-ex-assign": 2, // http://eslint.org/docs/rules/no-ex-assign
-  "no-extra-boolean-cast": 2, // http://esolint.org/docs/rules/no-extra-boolean-cast
+  "no-extra-boolean-cast": 2, // http://eslint.org/docs/rules/no-extra-boolean-cast
   "no-extra-parens": [2, "all"], // http://eslint.org/docs/rules/no-extra-parens
   "no-extra-semi": 2, // http://eslint.org/docs/rules/no-extra-semi
   "no-func-assign": 2, // http://eslint.org/docs/rules/no-func-assign
@@ -105,19 +105,19 @@
   "no-use-before-define": 2, // http://eslint.org/docs/rules/no-use-before-define
 
   // # Node.js and CommonJS http://eslint.org/docs/rules/#nodejs-and-commonjs
-  "callback-return": 2, // http://eslit.org/docs/rules/callback-return
+  "callback-return": 2, // http://eslint.org/docs/rules/callback-return
   "handle-callback-err": 0, // http://eslint.org/docs/rules/handle-callback-err
   "no-mixed-requires": [1, true], // http://eslint.org/docs/rules/no-mixed-requires
   "no-new-require": 2, // http://eslint.org/docs/rules/no-new-require
   "no-path-concat": 2, // http://eslint.org/docs/rules/no-path-concat
   "no-process-env": 2, // http://eslint.org/docs/rules/no-process-env
   "no-restricted-modules": [2,
-    "assert","buffer","child_process","cluster","crypto","dgram","dns","domain","events","freelist","fs","http","https","module","net","os","path","punycode","querystring","readline","repl","smalloc","stream","string_decoder","sys","timers","tls","tracing","tty","url","util","vm","zlib"
+  "assert","buffer","child_process","cluster","crypto","dgram","dns","domain","events","freelist","fs","http","https","module","net","os","path","punycode","querystring","readline","repl","smalloc","stream","string_decoder","sys","timers","tls","tracing","tty","url","util","vm","zlib"
   ], // http://eslint.org/docs/rules/no-restricted-modules
   "no-sync": 2, // http://eslint.org/docs/rules/no-sync
 
   // # Stylistic Issues http://eslint.org/docs/rules/#stylistic-issues
-  "array-bracket-spacing": [2, "never"], // http://eslint.org/docs/rules/array-bracketn-spacing
+  "array-bracket-spacing": [2, "never"], // http://eslint.org/docs/rules/array-bracket-spacing
   "block-spacing": [2, "always"], // http://eslint.org/docs/rules/block-spacing
   "brace-style": [2, "1tbs"], // http://eslint.org/docs/rules/brace-style
   "camelcase": [2, {"properties": "always"}], // http://eslint.org/docs/rules/camelcase
