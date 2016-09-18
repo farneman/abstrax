@@ -1,8 +1,8 @@
 # Abstrax
-=========
 
 A simple wrapper on top of jQuery.ajax to reduce redundancy
 
+[![npm](https://img.shields.io/npm/v/abstrax.svg?maxAge=2592000)](https://www.npmjs.com/package/abstrax)
 [![Code
 Climate](https://codeclimate.com/github/farneman/abstrax/badges/gpa.svg)](https://codeclimate.com/github/farneman/abstrax)
 [![Test
