@@ -1,15 +1,19 @@
 {
   "name": "abstrax",
   "version": "0.0.0",
-  "description": "Simple wrapper on top of jQuery.ajax to reduce redundancy",
+  "description": "A simple wrapper on top of jQuery.ajax to reduce redundancy",
   "main": "lib/abstrax.js",
+  "jsnext:main": "es/abstrax.js",
   "files": [
+    "dist",
+    "es",
     "lib",
-    "dist"
+    "src"
   ],
   "scripts": {
-    "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min",
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min && npm run build:es",
     "build:commonjs": "webpack --config webpack.config.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build:umd": "webpack --config webpack.config.umd.babel.js",
     "build:umd:min": "cross-env NODE_ENV=production webpack --config webpack.config.umd.babel.js",
     "clean": "rimraf lib dist",
@@ -19,8 +23,21 @@
     "start": "cross-env NODE_ENV=test karma start",
     "test": "cross-env NODE_ENV=test karma start --single-run"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/farneman/abstrax.git"
+  },
+  "homepage": "https://github.com/farneman/abstrax",
+  "bugs": {
+    "url": "https://github.com/farneamn/abstrax/issues"
+  },
+  "keywords": [
+    "jQuery",
+    "ajax",
+    "request"
+  ],
+  "author": "Josh Farneman <josh@farneman.net>",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
