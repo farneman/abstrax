@@ -1,8 +1,9 @@
 // @flow
 
-import template from 'lodash.template';
+// import template from 'lodash.template';
 import jQuery from 'jquery';
 
+import template from './micro_template';
 import Request from './request';
 
 const applyParamsToTemplate = (urlTemplate, params) => {
