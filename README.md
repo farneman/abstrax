@@ -31,6 +31,8 @@ See `package.json` for available formats.
 
 Abstrax requires `jQuery` as a peer dependency.
 
+Abstrax also requires that `Object.assign` be available in the runtime environment.
+
 ## Usage
 
 Pass in a config object containing a list of `requests` and any `defaults` for

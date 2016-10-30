@@ -1,10 +1,8 @@
 // @flow
 
-// import template from 'lodash.template';
 import jQuery from 'jquery';
 
 import template from './micro_template';
-import Request from './request';
 
 const applyParamsToTemplate = (urlTemplate, params) => {
   if (typeof urlTemplate !== 'function') {
@@ -24,21 +22,23 @@ const templateUrl = (url) => {
   return template(url);
 };
 
+const immutableAssign = (...args) => Object.assign({}, ...args);
+
 const createRequester = (addFor, requestObject) => {
   const requester = function (payload) {
-    const requestWithPayload = requestObject.concat({data: payload});
+    const requestWithPayload = immutableAssign(requestObject, {data: payload});
 
-    if (typeof requestWithPayload.empty().url === 'function') {
+    if (typeof requestWithPayload.url === 'function') {
       throw new Error('Must supply url keys before calling fulfill');
     }
 
-    return jQuery.ajax(requestWithPayload.empty());
+    return jQuery.ajax(requestWithPayload);
   };
 
   if (addFor) {
     requester.for = (urlParams) => {
-      const appliedUrl = applyParamsToTemplate(requestObject.empty().url, urlParams);
-      const requested = requestObject.concat({url: appliedUrl});
+      const appliedUrl = applyParamsToTemplate(requestObject.url, urlParams);
+      const requested = immutableAssign(requestObject, {url: appliedUrl});
 
       return createRequester(false, requested);
     };
@@ -49,14 +49,14 @@ const createRequester = (addFor, requestObject) => {
 
 const configureRequestCreator = function (defaultRequest, requestList) {
   return (requests, requestKey) => {
-    const request = new Request(requestList[requestKey]);
+    const request = requestList[requestKey];
 
-    if (!request.empty().url) {
+    if (!request.url) {
       return requests;
     }
 
-    const templatedRequest = request.concat({ url: templateUrl(request.empty().url) });
-    const preparedRequest = defaultRequest.concat(templatedRequest.empty());
+    const templatedRequest = immutableAssign(request, {url: templateUrl(request.url)});
+    const preparedRequest = immutableAssign(defaultRequest, templatedRequest);
 
     requests[requestKey] = createRequester(true, preparedRequest);
 
@@ -71,7 +71,7 @@ export default function abstrax(config: Object) {
     contentType: 'application/json; charset=utf-8'
   };
 
-  const defaultRequest = new Request(defaultConfig).concat(config.defaults);
+  const defaultRequest = immutableAssign(defaultConfig, config.defaults);
   const requestCreator = configureRequestCreator(defaultRequest, config.requests);
 
   return Object.keys(config.requests)

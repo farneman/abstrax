@@ -50,7 +50,6 @@ export default {
         query: {
           presets: ['es2015'],
           plugins: [
-            'transform-class-properties',
             'add-module-exports'
           ]
         }
