@@ -1,6 +1,6 @@
 {
   "name": "abstrax",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simple wrapper on top of jQuery.ajax to reduce redundancy",
   "main": "lib/abstrax.js",
   "jsnext:main": "es/abstrax.js",
