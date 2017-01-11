@@ -10,7 +10,8 @@ const immutableAssign = (...args) => Object.assign({}, ...args);
 
 const createRequester = (addFor, request) => {
   const requester = function (payload) {
-    const requestWithPayload = immutableAssign(request, {data: payload});
+    const preparedPayload = request.dataType === 'json' ? JSON.stringify(payload) : payload;
+    const requestWithPayload = immutableAssign(request, {data: preparedPayload});
 
     if (typeof requestWithPayload.url === 'function') {
       throw new Error('Must supply url keys before calling fulfill');

@@ -120,7 +120,7 @@ describe('abstrax', () => {
 
         expect(mostRecentArgs.url).toEqual('/api/users');
         expect(mostRecentArgs.method).toEqual('POST');
-        expect(mostRecentArgs.data).toEqual(payload);
+        expect(mostRecentArgs.data).toEqual(JSON.stringify(payload));
       });
     });
 
@@ -168,7 +168,7 @@ describe('abstrax', () => {
 
         expect(mostRecentArgs.url).toEqual('/api/users/123');
         expect(mostRecentArgs.method).toEqual('PATCH');
-        expect(mostRecentArgs.data).toEqual(payload);
+        expect(mostRecentArgs.data).toEqual(JSON.stringify(payload));
       });
     });
   });
