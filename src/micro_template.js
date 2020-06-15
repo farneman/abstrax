@@ -2,7 +2,7 @@
 
 // Originally inspired from Simple JavaScript Templating
 // by John Resig – http://ejohn.org/ – MIT Licensed
-export default function tmpl(str: string) {
+export default function tmpl(str: string): function {
   // Convert the template into pure JavaScript
   var templateStr = str.replace(/[\r\t\n]/g, ' ')
     .split('${').join('\t')
@@ -16,7 +16,7 @@ export default function tmpl(str: string) {
   // Introduce the data as local variables using with(){}
   return new Function( // eslint-disable-line no-new-func
     'obj',
-     `var p=[],print=function(){p.push.apply(p,arguments);};
+    `var p=[],print=function(){p.push.apply(p,arguments);};
      with(obj){p.push("${templateStr});}return p.join("");`
   );
 }

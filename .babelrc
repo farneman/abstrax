@@ -1,15 +1,21 @@
 {
   "plugins": [
-    "transform-flow-strip-types"
+    "@babel/plugin-transform-flow-strip-types"
   ],
-  "presets": ["es2015"],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-flow"
+  ],
   "env": {
     "test": {
-      "plugins": [
-        ["istanbul", {
-          "exclude": [
-            "**/*_spec.js"
-          ]
+      "presets": [
+        ["@babel/preset-env", {
+          corejs: 3,
+	  targets: {
+	    node: "current"
+	  },
+          modules: "commonjs",
+          "useBuiltIns": "usage"
         }]
       ]
     }
