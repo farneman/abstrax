@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-  - "4"
-  - "5"
-  - "6"
+  - node
+  - lts/*
+dist: xenial
+services:
+  - xvfb
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
   - npm install jquery
 script:
   - npm run clean
@@ -16,6 +15,5 @@ branches:
   only:
     - master
 addons:
-  firefox: latest
   code_climate:
     repo_token: 83a3827bbb1e879e17dcd945a6cdac0dd0dd0954316b72c471bad34ca19cc84e
