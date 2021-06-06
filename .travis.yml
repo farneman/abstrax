@@ -6,7 +6,7 @@ dist: xenial
 services:
   - xvfb
 before_install:
-  - yarn install jquery
+  - yarn add jquery
 script:
   - yarn run clean
   - yarn run build
