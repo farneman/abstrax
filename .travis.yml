@@ -6,11 +6,11 @@ dist: xenial
 services:
   - xvfb
 before_install:
-  - npm install jquery
+  - yarn add jquery
 script:
-  - npm run clean
-  - npm run build
-  - npm run test
+  - yarn run clean
+  - yarn run build
+  - yarn run test
 branches:
   only:
     - master
